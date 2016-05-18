@@ -5,10 +5,10 @@ services:
         ports:
             - "3306:3306"
         environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: symfony
-            MYSQL_USER: root
-            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: beebop
+            MYSQL_DATABASE: beebop
+            MYSQL_USER: beebop
+            MYSQL_PASSWORD: 4ZNepTxSWpSbStju
     php:
         build: ./php-fpm
         expose:
@@ -16,6 +16,7 @@ services:
         volumes:
             - ./symfony:/var/www/symfony
             - ./logs/symfony:/var/www/symfony/app/logs
+            - ./php-fpm/beebop_start.sh:/usr/local/bin/beebop_start
         links:
             - db
     nginx:
@@ -28,13 +29,3 @@ services:
             - php
         volumes:
             - ./logs/nginx/:/var/log/nginx
-    elk:
-        image: willdurand/elk
-        ports:
-            - "81:80"
-        volumes:
-            - ./elk/logstash:/etc/logstash
-            - ./elk/logstash/patterns:/opt/logstash/patterns
-        volumes_from:
-            - php
-            - nginx

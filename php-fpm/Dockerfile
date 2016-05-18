@@ -11,6 +11,13 @@ ADD symfony.pool.conf /etc/php5/fpm/pool.d/
 
 RUN usermod -u 1000 www-data
 
+RUN apt-get update && apt-get install -y curl
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+COPY beebop_start.sh /usr/local/bin/beebop_start
+RUN chmod 755 /usr/local/bin/beebop_start
+
 CMD ["php5-fpm", "-F"]
 
 EXPOSE 9000
