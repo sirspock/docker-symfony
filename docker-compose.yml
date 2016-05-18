@@ -10,14 +10,14 @@ services:
             MYSQL_USER: beebop
             MYSQL_PASSWORD: 4ZNepTxSWpSbStju
         volumes:
-            - /var/lib/mysql
+            - mysql-data:/var/lib/mysql
     php:
         build: ./php-fpm
         expose:
             - "9000"
         volumes:
             - ./symfony:/var/www/symfony
-            - /var/www/symfony/app/logs
+            - symfony-logs:/var/www/symfony/app/logs
             - ./php-fpm/beebop_start.sh:/usr/local/bin/beebop_start
         links:
             - db
@@ -30,4 +30,13 @@ services:
         volumes_from:
             - php
         volumes:
-            - ./logs/nginx/:/var/log/nginx
+            - nginx-logs:/var/log/nginx
+
+
+volumes:
+  mysql-data:
+    driver: local
+  symfony-logs:
+    driver: local
+  nginx-logs:
+    driver: local
