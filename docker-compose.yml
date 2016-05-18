@@ -34,7 +34,6 @@ services:
         volumes:
             - nginx-logs:/var/log/nginx
 
-
 volumes:
   mysql-data:
     driver: local

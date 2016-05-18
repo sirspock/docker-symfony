@@ -18,3 +18,4 @@ chmod -R 777 /var/www/symfony/app/logs/
 chmod -R 777 /var/www/symfony/app/cache/
 
 php5-fpm -F
+
