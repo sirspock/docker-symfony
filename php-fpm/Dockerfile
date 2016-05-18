@@ -18,6 +18,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY beebop_start.sh /usr/local/bin/beebop_start
 RUN chmod 755 /usr/local/bin/beebop_start
 
-CMD ["bash", "/usr/local/bin/beebop_start"]
+CMD ["/usr/local/bin/beebop_start"]
 
 EXPOSE 9000
