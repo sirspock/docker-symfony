@@ -4,12 +4,11 @@ cd /var/www/symfony
 
 php app/console doctrine:database:create --if-not-exists; 
 if [ $? -ne 0 ]; then
-	echo "new"
 	php app/console doctrine:schema:create;
 	php app/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixtures/ORMProd/
 	app/console app:assets --env=prod
 fi
-echo "Actualizacion"
+
 php app/console doctrine:schema:update --dump-sql --force
 app/console app:assets --env=prod
 php app/console ca:c --env=prod
