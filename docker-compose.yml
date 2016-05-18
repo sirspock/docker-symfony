@@ -21,6 +21,8 @@ services:
             - ./php-fpm/beebop_start.sh:/usr/local/bin/beebop_start
         links:
             - db
+        depends_on:
+            - db
     nginx:
         build: ./nginx
         ports:
