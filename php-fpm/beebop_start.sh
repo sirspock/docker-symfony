@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd /var/www/symfony
+composer install
 sleep 20;
-while ! nc -z db 3306; do sleep 20; done
 
 php app/console doctrine:database:create --if-not-exists; 
 if [ $? -ne 0 ]; then
